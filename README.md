@@ -64,9 +64,13 @@ FILL IF NEEDED REMOVE IF NOT Any assumptions that are being made in specifying t
 User enters new account data, and the system
 assigns a new account number, creates a new user record, and a new account record
 
-#### Diagram(s)
+#### Communication Diagram
 
 ![Alt text](./images/createUserAccount-communicationdiagram.png)
+
+### Activity Diagrams
+
+![Alt text](./images/CreateUserAccount-ActivityDiagram.PNG)
 
 #### Login to User Account
 
