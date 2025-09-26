@@ -86,18 +86,43 @@ assigns a new account number, creates a new user record, and a new account recor
 
 #### Browse Active Auctions
 
-#### Scenario
+#### Description
 
-#### Diagram(s)
+User opens the “Active Auctions” page, and the system retrieves all ongoing auctions and displays their title, current bid, and time remaining
+
+#### Communication Diagram
+
+![Alt text](./images/AAsequence.png)
+
+#### Activity Diagram
+
+![Alt text](./images/ActiceAuction.png)
+
 
 #### Select an Auction/View Auction Information
 
-#### Scenario
+#### Description
 
-#### Diagram(s)
+User clicks on an active auction, and the system retrieves the auction details and displays the title, description, current bid, bid history, and countdown timer
+
+#### Communication Diagram
+
+![Alt text](./images/AVSequence.png)
+
+#### Activity Diagram
+
+![Alt text](./images/AuctionView.png)
 
 #### Place Bid on Auction
 
-#### Scenario
+#### Description
 
-#### Diagram(s)
+User enters a bid, and the system verifies it, updates the auction record, adds the bid to the bid history, and refreshes the real-time display
+
+#### Communication Diagram 
+
+![Alt text](./images/BAsequence.png)
+
+#### Activity Diagram
+
+![Alt text](./images/BidAuction.png)
