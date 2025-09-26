@@ -31,8 +31,7 @@ The Systems Analysis section contains the Data Flow and Entity relationship diag
 This system will use the MERN stack with MangoDB, ExpressJS, React, and NodeJS. The project will use the Heroku PaaS to build and run the web application.
 
 ### Product Functions
-An overview of the features to be provided by the software.
-The softaere will provide the following features:
+The software will provide the following features:
 * Creating and logging into user accounts.
 * Adding auction items with a descrition, title, and ending time for the auction.
 * Browsing through all active auctions.
@@ -40,14 +39,7 @@ The softaere will provide the following features:
 * Bidding with tokens on each auction.
 
 ### User Characteristics
-Description of the types of users that will interact with this software and assumed properties of those users.
-The user that will interact with this software will will fall into one or both of the categories of auctioneer or bidder, as defined in the [Definitions and Acronyms](#definitions--acronyms) section. 
-
-### Constraints
-FILL IF NEEDED REMOVE IF NOT Any constraints that have been placed on the project (that are not, in themselves, requirements)
-
-### Assumptions
-FILL IF NEEDED REMOVE IF NOT Any assumptions that are being made in specifying these requirements
+The users that will interact with this software will fall into one or both of the categories of auctioneer or bidder, as defined in the [Definitions and Acronyms](#definitions--acronyms) section. 
 
 ## Systems Analysis
 
