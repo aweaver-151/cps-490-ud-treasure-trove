@@ -1,6 +1,8 @@
 # UD Treasure Trove
 Repository for the UD Treasure Trove project for 2025
 
+Group Members: Andrew Weaver, Kye Sprouse, and Michel Kanga
+
 Jira Board For the Project:
 https://cps-490-ud-treasure-trove.atlassian.net/jira/core/projects/TT/board 
 
@@ -28,7 +30,7 @@ The Systems Analysis section contains the Data Flow and Entity relationship diag
 ## Overall Description
 
 ### Product Perspective
-This system will use the MERN stack with MangoDB, ExpressJS, React, and NodeJS. The project will use the Heroku PaaS to build and run the web application.
+This system will use the MERN stack with MongoDB, ExpressJS, React, and NodeJS. The project will use the Heroku PaaS to build and run the web application.
 
 ### Product Functions
 The software will provide the following features:
