@@ -69,7 +69,7 @@ FILL IF NEEDED REMOVE IF NOT Any assumptions that are being made in specifying t
 
 User enters username and password, system validates username and password, system redirects user to the browsing page.
 
-#### Diagram(s)
+#### Diagrams
 
 ![Image Failed To Load](images/LoginActivityDiagram.png "Login Activity Diagram")
 
@@ -77,9 +77,15 @@ User enters username and password, system validates username and password, syste
 
 #### Add Auction Item
 
-#### Scenario
+#### Use Case Description
 
-#### Diagram(s)
+User selects the add item button, user enters the title, description, and end time of the auction, system adds auction to database to display to other users and presents the auction information screen.
+
+#### Diagrams
+
+![Image Failed To Load](images/AddItemActivityDiagram.png "Login Activity Diagram")
+
+![Image Failed To Load](images/AddItemCommunicationDiagram.png "Login Activity Diagram")
 
 #### Browse Active Auctions
 
