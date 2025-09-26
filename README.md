@@ -49,9 +49,10 @@ The users that will interact with this software will fall into one or both of th
 
 ### Use Cases
 
+![Alt text](./images/UseCaseDiagram.PNG)
+
 #### Create User Account
 
-![Alt text](./images/UseCaseDiagram.PNG)
 
 #### Description
 
@@ -62,7 +63,7 @@ assigns a new account number, creates a new user record, and a new account recor
 
 ![Alt text](./images/CreateUserAccount-CommunicationDiagram.PNG)
 
-### Activity Diagrams
+#### Activity Diagrams
 
 ![Alt text](./images/CreateUserAccount-ActivityDiagram.PNG)
 
