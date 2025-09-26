@@ -66,7 +66,7 @@ assigns a new account number, creates a new user record, and a new account recor
 
 #### Communication Diagram
 
-![Alt text](./images/createUserAccount-communicationdiagram.png)
+![Alt text](./images/CreateUserAccount-CommunicationDiagram.PNG)
 
 ### Activity Diagrams
 
