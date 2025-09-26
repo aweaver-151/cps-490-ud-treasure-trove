@@ -19,9 +19,6 @@ This document covers the requirements and use cases for the project, and aims to
 * Auctioneer - User who puts an item up for auction
 * Bidder - User who places bids on an item up for auction
 
-### References
-Fill as necessary, remove if empty before submitting. This is for this document.
-
 ### Overview
 The [Overall Description](#overall-description) section will provide a more in depth look into the requirements and environment of the document. The [Product Perspective](#product-perspective) subsection covers the environment the system will operate within, as well as hardware and software systems it will interface with. The features provided by the software can be found in the [Product Functions](#product-functions) subsection, and a description of our users can be found in the [User Characteristics](#user-characteristics) subsection. Details about the [Constraints](#constraints) or [Assumptions](#assumptions) can be found in the appropriate subsections of the Overall Descripton section.
 
@@ -72,6 +69,7 @@ assigns a new account number, creates a new user record, and a new account recor
 #### Login to User Account
 
 #### Use Case Description
+<<<<<<< HEAD
 
 User enters username and password, system validates username and password, system redirects user to the browsing page.
 
@@ -79,6 +77,15 @@ User enters username and password, system validates username and password, syste
 
 ![Image Failed To Load](images/LoginActivityDiagram.png "Login Activity Diagram")
 
+=======
+
+User enters username and password, system validates username and password, system redirects user to the browsing page.
+
+#### Activity Diagram
+
+![Image Failed To Load](images/LoginActivityDiagram.png "Login Activity Diagram")
+
+>>>>>>> ca69170f44756ea54c8d4fbbe458176c62b021f9
 #### Sequence Diagram
 
 ![Image Failed To Load](images/LoginSequenceDiagram.png "Login Sequence Diagram")
@@ -86,6 +93,7 @@ User enters username and password, system validates username and password, syste
 #### Add Auction Item
 
 #### Use Case Description
+<<<<<<< HEAD
 
 User selects the add item button, user enters the title, description, and end time of the auction, system adds auction to database to display to other users and presents the auction information screen.
 
@@ -93,6 +101,15 @@ User selects the add item button, user enters the title, description, and end ti
 
 ![Image Failed To Load](images/AddItemActivityDiagram.png "Add Item Activity Diagram")
 
+=======
+
+User selects the add item button, user enters the title, description, and end time of the auction, system adds auction to database to display to other users and presents the auction information screen.
+
+#### Activity Diagram
+
+![Image Failed To Load](images/AddItemActivityDiagram.png "Add Item Activity Diagram")
+
+>>>>>>> ca69170f44756ea54c8d4fbbe458176c62b021f9
 #### Sequence Diagram
 
 ![Image Failed To Load](images/AddItemSequenceDiagram.png "Add Item Sequence Diagram")
