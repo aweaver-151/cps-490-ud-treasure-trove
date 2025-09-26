@@ -49,9 +49,10 @@ The users that will interact with this software will fall into one or both of th
 
 ### Use Cases
 
+![Alt text](./images/UseCaseDiagram.PNG)
+
 #### Create User Account
 
-![Alt text](./images/UseCaseDiagram.PNG)
 
 #### Description
 
