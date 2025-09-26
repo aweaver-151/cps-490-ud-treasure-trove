@@ -76,15 +76,31 @@ assigns a new account number, creates a new user record, and a new account recor
 
 #### Login to User Account
 
-#### Scenario
+#### Use Case Description
 
-#### Diagram(s)
+User enters username and password, system validates username and password, system redirects user to the browsing page.
+
+#### Activity Diagram
+
+![Image Failed To Load](images/LoginActivityDiagram.png "Login Activity Diagram")
+
+#### Sequence Diagram
+
+![Image Failed To Load](images/LoginSequenceDiagram.png "Login Sequence Diagram")
 
 #### Add Auction Item
 
-#### Scenario
+#### Use Case Description
 
-#### Diagram(s)
+User selects the add item button, user enters the title, description, and end time of the auction, system adds auction to database to display to other users and presents the auction information screen.
+
+#### Activity Diagram
+
+![Image Failed To Load](images/AddItemActivityDiagram.png "Add Item Activity Diagram")
+
+#### Sequence Diagram
+
+![Image Failed To Load](images/AddItemSequenceDiagram.png "Add Item Sequence Diagram")
 
 #### Browse Active Auctions
 
