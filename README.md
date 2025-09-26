@@ -65,9 +65,15 @@ FILL IF NEEDED REMOVE IF NOT Any assumptions that are being made in specifying t
 
 #### Login to User Account
 
-#### Scenario
+#### Use Case Description
+
+User enters username and password, system validates username and password, system redirects user to the browsing page.
 
 #### Diagram(s)
+
+![Image Failed To Load](images/LoginActivityDiagram.png "Login Activity Diagram")
+
+![Image Failed To Load](images/LoginCommunicationDiagram.png "Login Activity Diagram")
 
 #### Add Auction Item
 
