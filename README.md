@@ -98,9 +98,9 @@ User selects the add item button, user enters the title, description, and end ti
 
 ![Image Failed To Load](images/AddItemActivityDiagram.png "Add Item Activity Diagram")
 
-#### Communication Diagram
+#### Sequence Diagram
 
-![Image Failed To Load](images/AddItemCommunicationDiagram.png "Add Item Communication Diagram")
+![Image Failed To Load](images/AddItemSequenceDiagram.png "Add Item Sequence Diagram")
 
 #### Browse Active Auctions
 
