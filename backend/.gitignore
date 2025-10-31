@@ -1,7 +1,4 @@
-node_module/
-node_modules/
-.vscode/
-.DS_Store
+.env
 
 # Logs
 logs
