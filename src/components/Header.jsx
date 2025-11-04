@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import { useAuth } from '../contexts/AuthContexts.jsx'
 import { User } from './User.jsx'
+import { deleteUser } from '../api/users.js'
 
 export function Header() {
   const [token, setToken] = useAuth()
@@ -12,6 +13,14 @@ export function Header() {
         Logged in as <User id={sub} />
         <br />
         <button onClick={() => setToken(null)}>Logout</button>
+        <button
+          onClick={() => {
+            deleteUser(sub, token)
+            setToken(null)
+          }}
+        >
+          Delete Account
+        </button>
       </div>
     )
   }

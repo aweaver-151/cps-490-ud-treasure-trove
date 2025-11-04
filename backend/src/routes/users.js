@@ -1,4 +1,10 @@
-import { createUser, loginUser, getUserInfoById } from '../services/users.js'
+import {
+  createUser,
+  loginUser,
+  getUserInfoById,
+  deleteUser,
+} from '../services/users.js'
+import { requireAuth } from '../middleware/jwt.js'
 
 export function userRoutes(app) {
   app.get('/api/v1/users/:id', async (req, res) => {
@@ -26,6 +32,16 @@ export function userRoutes(app) {
       return res.status(400).json({
         error: 'failed to create the user, does the username already exist?',
       })
+    }
+  })
+  app.delete('/api/v1/users/:id', requireAuth, async (req, res) => {
+    try {
+      const { deletedCount } = await deleteUser(req.params.id)
+      if (deletedCount === 0) return res.sendStatus(404)
+      return res.status(204).end()
+    } catch (err) {
+      console.error('error deleting user', err)
+      return res.status(500).end()
     }
   })
 }
