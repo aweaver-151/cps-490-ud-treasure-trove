@@ -21,6 +21,9 @@ export function Header() {
         >
           Delete Account
         </button>
+        <br />
+        <hr />
+        <br />
       </div>
     )
   }
@@ -28,6 +31,9 @@ export function Header() {
   return (
     <div>
       <Link to='/login'>Login</Link> | <Link to='/signup'>Sign Up</Link>
+      <br />
+      <hr />
+      <br />
     </div>
   )
 }

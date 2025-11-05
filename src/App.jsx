@@ -4,12 +4,22 @@ import { AuthContextProvider } from './contexts/AuthContexts.jsx'
 import { Blog } from './pages/Blog.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { Login } from './pages/Login.jsx'
-import { Navbar } from './components/Navbar.jsx'
+import { Header } from './components/Header.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Blog />,
+    element: <Header />,
+    children: [
+      {
+        index: true,
+        element: <Blog />,
+      },
+      {
+        path: 'blog',
+        element: <Blog />,
+      },
+    ],
   },
   {
     path: '/signup',
@@ -28,9 +38,7 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
         <div className='min-h-screen bg-slate-950 text-white overflow-hidden'>
-          <RouterProvider router={router}>
-            <Navbar />
-          </RouterProvider>
+          <RouterProvider router={router} />
         </div>
       </AuthContextProvider>
     </QueryClientProvider>
