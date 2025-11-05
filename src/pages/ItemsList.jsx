@@ -6,7 +6,7 @@ import { PostSorting } from '../components/PostSorting.jsx'
 import { getPosts } from '../api/posts.js'
 import { useState } from 'react'
 
-export function Blog() {
+export function ItemsList() {
   const [author, setAuthor] = useState('')
   const [sortBy, setSortBy] = useState('createdAt')
   const [sortOrder, setSortOrder] = useState('descending')
