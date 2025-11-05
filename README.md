@@ -21,6 +21,7 @@ This document covers the requirements and use cases for the project, and aims to
 
 ### Resources Used & Citations
 https://www.youtube.com/watch?v=yS7B1W2SwaU
+https://flowbite.com/docs/
 
 ### Overview
 The [Overall Description](#overall-description) section will provide a more in depth look into the requirements and environment of the document. The [Product Perspective](#product-perspective) subsection covers the environment the system will operate within, as well as hardware and software systems it will interface with. The features provided by the software can be found in the [Product Functions](#product-functions) subsection, and a description of our users can be found in the [User Characteristics](#user-characteristics) subsection. Details about the [Constraints](#constraints) or [Assumptions](#assumptions) can be found in the appropriate subsections of the Overall Descripton section.
