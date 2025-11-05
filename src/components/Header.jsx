@@ -8,11 +8,16 @@ export function Header() {
   if (token) {
     const { sub } = jwtDecode(token)
     return (
-      <div>
+      <div className='bg-blue-500'>
         Logged in as <User id={sub} />
-        <br />
-        <button onClick={() => setToken(null)}>Logout</button>
         <button
+          className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'
+          onClick={() => setToken(null)}
+        >
+          Logout
+        </button>
+        <button
+          className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'
           onClick={() => {
             deleteUser(sub, token)
             setToken(null)
@@ -21,22 +26,21 @@ export function Header() {
           Delete Account
         </button>
         <br />
-        <hr />
         <br />
       </div>
     )
   }
 
   return (
-    <div className='bg-blue-700'>
+    <div className='bg-blue-500'>
       <button
-        className='p-2 text-gray-300 hover:text-white float-right'
+        className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'
         onClick={() => (window.location.href = '/login')}
       >
         Login
       </button>
       <button
-        className='p-2 text-gray-300 hover:text-white float-right'
+        className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'
         onClick={() => (window.location.href = '/signup')}
       >
         Sign Up
