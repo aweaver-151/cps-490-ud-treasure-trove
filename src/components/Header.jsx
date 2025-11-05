@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import { useAuth } from '../contexts/AuthContexts.jsx'
 import { User } from './User.jsx'
@@ -29,10 +28,20 @@ export function Header() {
   }
 
   return (
-    <div>
-      <Link to='/login'>Login</Link> | <Link to='/signup'>Sign Up</Link>
+    <div className='bg-blue-700'>
+      <button
+        className='p-2 text-gray-300 hover:text-white float-right'
+        onClick={() => (window.location.href = '/login')}
+      >
+        Login
+      </button>
+      <button
+        className='p-2 text-gray-300 hover:text-white float-right'
+        onClick={() => (window.location.href = '/signup')}
+      >
+        Sign Up
+      </button>
       <br />
-      <hr />
       <br />
     </div>
   )
