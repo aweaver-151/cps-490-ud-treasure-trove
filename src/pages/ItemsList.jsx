@@ -18,7 +18,7 @@ export function ItemsList() {
   const posts = postsQuery.data ?? []
 
   return (
-    <div style={{ padding: 8 }}>
+    <div>
       <CreatePost />
       <br />
       <hr />
