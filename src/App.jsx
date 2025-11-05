@@ -4,30 +4,26 @@ import { AuthContextProvider } from './contexts/AuthContexts.jsx'
 import { Blog } from './pages/Blog.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { Login } from './pages/Login.jsx'
-import { Header } from './components/Header.jsx'
+import { Shared } from './pages/Shared.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Header />,
+    element: <Shared />,
     children: [
       {
         index: true,
         element: <Blog />,
       },
       {
-        path: 'blog',
-        element: <Blog />,
+        path: '/signup',
+        element: <Signup />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
     ],
-  },
-  {
-    path: '/signup',
-    element: <Signup />,
-  },
-  {
-    path: '/login',
-    element: <Login />,
   },
 ])
 
