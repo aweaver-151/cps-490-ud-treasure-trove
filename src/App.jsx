@@ -1,9 +1,10 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Blog } from './pages/Blog.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Signup } from './pages/Signup.jsx'
 import { AuthContextProvider } from './contexts/AuthContexts.jsx'
-import { Login } from './pages/Login.jsx' 
+import { Blog } from './pages/Blog.jsx'
+import { Signup } from './pages/Signup.jsx'
+import { Login } from './pages/Login.jsx'
+import { Navbar } from './components/Navbar.jsx'
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,11 @@ export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
-        <RouterProvider router={router} />
+        <div className='min-h-screen bg-slate-950 text-white overflow-hidden'>
+          <RouterProvider router={router}>
+            <Navbar />
+          </RouterProvider>
+        </div>
       </AuthContextProvider>
     </QueryClientProvider>
   )
