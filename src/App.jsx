@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { AuthContextProvider } from './contexts/AuthContexts.jsx'
 import { ItemsList } from './pages/ItemsList.jsx'
+import { Home } from './pages/Home.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { Login } from './pages/Login.jsx'
 import { Shared } from './pages/Shared.jsx'
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Home />,
+      },
+      {
+        path: '/list',
         element: <ItemsList />,
       },
       {
