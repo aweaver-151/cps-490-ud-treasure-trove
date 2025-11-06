@@ -21,6 +21,7 @@ export function Header() {
           onClick={() => {
             deleteUser(sub, token)
             setToken(null)
+            localStorage.removeItem('authToken')
           }}
         >
           Delete Account
