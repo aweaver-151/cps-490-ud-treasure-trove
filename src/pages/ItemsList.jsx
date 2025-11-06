@@ -5,17 +5,21 @@ import { PostFilter } from '../components/PostFilter.jsx'
 import { PostSorting } from '../components/PostSorting.jsx'
 import { getPosts } from '../api/posts.js'
 import { useState } from 'react'
+import { useAuth } from '../contexts/AuthContexts.jsx'
 
 export function ItemsList() {
   const [author, setAuthor] = useState('')
   const [sortBy, setSortBy] = useState('createdAt')
   const [sortOrder, setSortOrder] = useState('descending')
+  const [token] = useAuth()
   const postsQuery = useQuery({
     queryKey: ['posts', { author, sortBy, sortOrder }],
     queryFn: () => getPosts({ author, sortBy, sortOrder }),
   })
 
   const posts = postsQuery.data ?? []
+
+  if (!token) return <div>Please log in to view.</div>
 
   return (
     <div>
