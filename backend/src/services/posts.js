@@ -1,5 +1,6 @@
 import { Post } from '../db/models/post.js'
 import { User } from '../db/models/user.js'
+import { deductTokens } from '../services/users.js'
 
 export async function createPost(userId, { title, contents, tags }) {
   const post = new Post({ title, author: userId, contents, tags })
@@ -41,4 +42,9 @@ export async function updatePost(userId, postID, { title, contents, tags }) {
 
 export async function deletePost(userId, postId) {
   return await Post.deleteOne({ _id: postId, author: userId })
+}
+
+export async function bidOnPost(userId, postId, amount) {
+  const remainingPoints = await deductTokens(userId, amount)
+  return { postId, remainingPoints }
 }
