@@ -25,6 +25,12 @@ export function Header() {
         >
           Delete Account
         </button>
+        <button
+          className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'
+          onClick={() => (window.location.href = '/list')}
+        >
+          Item List
+        </button>
         <br />
         <br />
       </div>
