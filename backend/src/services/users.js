@@ -38,3 +38,19 @@ export async function deleteUser(userId) {
   await Post.deleteMany({ author: userId })
   return await User.deleteOne({ _id: userId })
 }
+
+export async function deductTokens(userId, amount) {
+  const user = await User.findById(userId)
+  if (!user) {
+    throw new Error('User not found')
+  }
+
+  if (user.tokens < amount) {
+    throw new Error('Not enough points')
+  }
+
+  user.tokens -= amount
+  await user.save()
+
+  return user.tokens
+}
