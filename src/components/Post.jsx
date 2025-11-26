@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
 import { User } from './User.jsx'
 import { usePoints } from '../contexts/PointsContext.jsx'
+import { Link } from 'react-router-dom'
 
-export function Post({ title, contents, author }) {
+export function Post({ id, title, contents, author }) {
   const { userPoints, setUserPoints } = usePoints()
 
   const handleBid = () => {
@@ -16,9 +17,11 @@ export function Post({ title, contents, author }) {
 
   return (
     <article className='block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 m-2'>
-      <h3 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
-        {title}
-      </h3>
+      <Link to={`/auction/${id}`}>
+        <h3 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
+          {title}
+        </h3>
+      </Link>
       <div className='font-normal text-gray-700 dark:text-gray-400'>
         {contents}
       </div>
@@ -41,6 +44,7 @@ export function Post({ title, contents, author }) {
 }
 
 Post.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   contents: PropTypes.string,
   author: PropTypes.string,
