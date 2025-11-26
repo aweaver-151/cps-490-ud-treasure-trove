@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { usePoints } from '../contexts/PointsContext.jsx'
+import { User } from '../components/User.jsx'
 
 export function Auction() {
   const { id } = useParams()
@@ -32,7 +33,9 @@ export function Auction() {
     <div>
       <h1>{auction.title}</h1>
       <p>{auction.contents}</p>
-      <p>Author: {auction.author?.username ?? auction.author}</p>
+      <p>
+        Author: <User id={auction.author} />
+      </p>
       <p>Tags: {(auction.tags ?? []).join(', ')}</p>
       <div className='mt-4'>
         <button
