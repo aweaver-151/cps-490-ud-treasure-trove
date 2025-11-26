@@ -30,20 +30,22 @@ export function Auction() {
   }
 
   return (
-    <div>
-      <h1>{auction.title}</h1>
-      <p>{auction.contents}</p>
-      <p>
-        Author: <User id={auction.author} />
-      </p>
-      <p>Tags: {(auction.tags ?? []).join(', ')}</p>
-      <div className='mt-4'>
-        <button
-          onClick={handleBid}
-          className='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
-        >
-          Bid
-        </button>
+    <div className='flex items-center justify-center h-screen'>
+      <div className='block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 m-2 min-w-[300px] min-h-[350px]'>
+        <h1>{auction.title}</h1>
+        <p>{auction.contents}</p>
+        <p>
+          Owner: <User id={auction.author} />
+        </p>
+        <p>Tags: {(auction.tags ?? []).join(', ')}</p>
+        <div className='mt-4'>
+          <button
+            onClick={handleBid}
+            className='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'
+          >
+            Bid
+          </button>
+        </div>
       </div>
     </div>
   )
