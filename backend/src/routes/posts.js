@@ -8,6 +8,20 @@ import {
   deletePost,
 } from '../services/posts.js'
 import { requireAuth } from '../middleware/jwt.js'
+import { extname } from 'path'
+import multer from 'multer'
+import { diskStorage } from 'multer'
+
+const storage = diskStorage({
+  desination: (req, file, cb) => {
+    cb(null, 'public/images')
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '_' + Date.now() + extname(file.originalname))
+  },
+})
+
+const upload = multer({ storage: storage })
 
 export function postsRoutes(app) {
   app.get('/api/v1/posts', async (req, res) => {
@@ -43,25 +57,42 @@ export function postsRoutes(app) {
     }
   })
 
-  app.post('/api/v1/posts', requireAuth, async (req, res) => {
-    try {
-      const post = await createPost(req.auth.sub, req.body)
-      return res.json(post)
-    } catch (err) {
-      console.error('error creating post', err)
-      return res.status(500).end()
-    }
-  })
+  app.post(
+    '/api/v1/posts',
+    upload.single('image'),
+    requireAuth,
+    async (req, res) => {
+      try {
+        const imagepath = req.body.image.filename
+        const post = await createPost(req.auth.sub, req.body, imagepath)
+        return res.json(post)
+      } catch (err) {
+        console.error('error creating post', err)
+        return res.status(500).end()
+      }
+    },
+  )
 
-  app.patch('/api/v1/posts/:id', requireAuth, async (req, res) => {
-    try {
-      const post = await updatePost(req.auth.sub, req.params.id, req.body)
-      return res.json(post)
-    } catch (err) {
-      console.error('error updating post', err)
-      return res.status(500).end()
-    }
-  })
+  app.patch(
+    '/api/v1/posts/:id',
+    upload.single('file'),
+    requireAuth,
+    async (req, res) => {
+      try {
+        const imagepath = req.file.filename
+        const post = await updatePost(
+          req.auth.sub,
+          req.params.id,
+          req.body,
+          imagepath,
+        )
+        return res.json(post)
+      } catch (err) {
+        console.error('error updating post', err)
+        return res.status(500).end()
+      }
+    },
+  )
 
   app.delete('/api/v1/posts/:id', requireAuth, async (req, res) => {
     try {

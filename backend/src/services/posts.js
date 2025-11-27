@@ -2,8 +2,8 @@ import { Post } from '../db/models/post.js'
 import { User } from '../db/models/user.js'
 import { deductTokens } from '../services/users.js'
 
-export async function createPost(userId, { title, contents, tags }) {
-  const post = new Post({ title, author: userId, contents, tags })
+export async function createPost(userId, { title, contents, tags }, imagepath) {
+  const post = new Post({ title, author: userId, contents, imagepath, tags })
   return await post.save()
 }
 
@@ -32,10 +32,14 @@ export async function getPostById(postID) {
   return await Post.findById(postID)
 }
 
-export async function updatePost(userId, postID, { title, contents, tags }) {
+export async function updatePost(
+  userId,
+  postID,
+  { title, contents, imagepath, tags },
+) {
   return await Post.findOneAndUpdate(
     { _id: postID, author: userId },
-    { $set: { title, contents, tags } },
+    { $set: { title, contents, imagepath, tags } },
     { new: true },
   )
 }
