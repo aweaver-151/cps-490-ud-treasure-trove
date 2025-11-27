@@ -14,7 +14,7 @@ import { diskStorage } from 'multer'
 
 const storage = diskStorage({
   desination: (req, file, cb) => {
-    cb(null, 'public/images')
+    cb(null, '../../public/images')
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '_' + Date.now() + extname(file.originalname))
@@ -58,41 +58,39 @@ export function postsRoutes(app) {
   })
 
   app.post(
-    '/api/v1/posts',
-    upload.single('image'),
+    '/api/v1/upload',
+    upload.single('file'),
     requireAuth,
     async (req, res) => {
       try {
-        const imagepath = req.body.image.filename
-        const post = await createPost(req.auth.sub, req.body, imagepath)
-        return res.json(post)
+        console.log('File uploaded:', req.file)
+        return res.status(201).end()
       } catch (err) {
-        console.error('error creating post', err)
+        console.error('error uploading image', err)
         return res.status(500).end()
       }
     },
   )
 
-  app.patch(
-    '/api/v1/posts/:id',
-    upload.single('file'),
-    requireAuth,
-    async (req, res) => {
-      try {
-        const imagepath = req.file.filename
-        const post = await updatePost(
-          req.auth.sub,
-          req.params.id,
-          req.body,
-          imagepath,
-        )
-        return res.json(post)
-      } catch (err) {
-        console.error('error updating post', err)
-        return res.status(500).end()
-      }
-    },
-  )
+  app.post('/api/v1/posts', requireAuth, async (req, res) => {
+    try {
+      const post = await createPost(req.auth.sub, req.body, req.imagepath)
+      return res.json(post)
+    } catch (err) {
+      console.error('error creating post', err)
+      return res.status(500).end()
+    }
+  })
+
+  app.patch('/api/v1/posts/:id', requireAuth, async (req, res) => {
+    try {
+      const post = await updatePost(req.auth.sub, req.params.id, req.body)
+      return res.json(post)
+    } catch (err) {
+      console.error('error updating post', err)
+      return res.status(500).end()
+    }
+  })
 
   app.delete('/api/v1/posts/:id', requireAuth, async (req, res) => {
     try {

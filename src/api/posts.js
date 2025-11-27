@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const getPosts = async (queryParams) => {
   try {
     console.log('Backend URL:', import.meta.env.VITE_BACKEND_URL)
@@ -14,8 +16,17 @@ export const getPosts = async (queryParams) => {
   }
 }
 
-export const createPost = async (token, post) => {
+export const createPost = async (token, post, image) => {
   try {
+    const uploadUrl = new URL('upload', import.meta.env.VITE_BACKEND_URL)
+    const formData = new FormData()
+    formData.append('file', image)
+    await axios.post(uploadUrl, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    })
     const url = new URL('posts', import.meta.env.VITE_BACKEND_URL)
     const res = await fetch(url.toString(), {
       method: 'POST',
@@ -24,6 +35,7 @@ export const createPost = async (token, post) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(post),
+      imagepath: image.name,
     })
     return await res.json()
   } catch (err) {
