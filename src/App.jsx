@@ -6,6 +6,7 @@ import { Home } from './pages/Home.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { Login } from './pages/Login.jsx'
 import { Shared } from './pages/Shared.jsx'
+import { Auction } from './pages/Auction.jsx'
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/auction/:id',
+        element: <Auction />,
       },
     ],
   },

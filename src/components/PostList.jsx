@@ -7,7 +7,12 @@ export function PostList({ posts = [] }) {
     <div className='flex flex-wrap justify-center'>
       {posts.map((post) => (
         <Fragment key={post._id}>
-          <Post {...post} />
+          <Post
+            id={post._id}
+            title={post.title}
+            contents={post.contents}
+            author={post.author}
+          />
         </Fragment>
       ))}
     </div>
@@ -15,5 +20,12 @@ export function PostList({ posts = [] }) {
 }
 
 PostList.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape(Post.propTypes)).isRequired,
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      contents: PropTypes.string,
+      author: PropTypes.string,
+    }),
+  ).isRequired,
 }
