@@ -32,14 +32,10 @@ export async function getPostById(postID) {
   return await Post.findById(postID)
 }
 
-export async function updatePost(
-  userId,
-  postID,
-  { title, contents, imagepath, tags },
-) {
+export async function updatePost(userId, postID, { title, contents, tags }) {
   return await Post.findOneAndUpdate(
     { _id: postID, author: userId },
-    { $set: { title, contents, imagepath, tags } },
+    { $set: { title, contents, tags } },
     { new: true },
   )
 }

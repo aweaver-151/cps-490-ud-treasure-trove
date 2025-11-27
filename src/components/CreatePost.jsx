@@ -10,8 +10,7 @@ export function CreatePost() {
   const [image, setImage] = useState()
   const queryClient = useQueryClient()
   const createPostMutation = useMutation({
-    mutationFn: () =>
-      createPost(token, { title, contents, imagepath: image.filename }, image),
+    mutationFn: () => createPost(token, { title, contents }, image),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['posts'] }),
   })
 

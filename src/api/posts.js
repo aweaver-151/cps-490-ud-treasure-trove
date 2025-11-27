@@ -21,13 +21,14 @@ export const createPost = async (token, post, image) => {
     const uploadUrl = new URL('upload', import.meta.env.VITE_BACKEND_URL)
     const formData = new FormData()
     formData.append('file', image)
-    await axios.post(uploadUrl, formData, {
+    const filename = await axios.post(uploadUrl, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `Bearer ${token}`,
       },
     })
     const url = new URL('posts', import.meta.env.VITE_BACKEND_URL)
+    post['imagepath'] = filename
     const res = await fetch(url.toString(), {
       method: 'POST',
       headers: {
@@ -35,7 +36,6 @@ export const createPost = async (token, post, image) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(post),
-      imagepath: image.name,
     })
     return await res.json()
   } catch (err) {
