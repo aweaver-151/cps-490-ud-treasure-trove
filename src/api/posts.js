@@ -16,10 +16,11 @@ export const getPosts = async (queryParams) => {
   }
 }
 
-export const createPost = async (token, post, image) => {
+export const createPost = async (token, post, image, selectedDate) => {
   try {
     const uploadUrl = new URL('upload', import.meta.env.VITE_BACKEND_URL)
     const formData = new FormData()
+    const dateObj = new Date(selectedDate)
     formData.append('file', image)
     const file = await axios.post(uploadUrl, formData, {
       headers: {
@@ -29,6 +30,7 @@ export const createPost = async (token, post, image) => {
     })
     const url = new URL('posts', import.meta.env.VITE_BACKEND_URL)
     post['imagepath'] = file.data.filename
+    post['enddate'] = dateObj
     const res = await fetch(url.toString(), {
       method: 'POST',
       headers: {
