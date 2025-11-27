@@ -2,7 +2,8 @@ import PropTypes from 'prop-types'
 import { User } from './User.jsx'
 import { Link } from 'react-router-dom'
 
-export function Post({ id, title, contents, author, imagepath }) {
+export function Post({ id, title, contents, author, imagepath, enddate }) {
+  enddate = new Date(enddate)
   return (
     <article className='block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 m-2'>
       <img src={import.meta.env.VITE_IMAGE_URL + imagepath} alt='' />
@@ -13,6 +14,10 @@ export function Post({ id, title, contents, author, imagepath }) {
       </Link>
       <div className='font-normal text-gray-700 dark:text-gray-400'>
         {contents}
+      </div>
+      <div className='font-normal text-gray-700 dark:text-gray-400'>
+        End Date: {enddate?.toLocaleDateString() ?? ''} End Time:{' '}
+        {enddate?.toLocaleTimeString() ?? ''}
       </div>
       {author && (
         <em>
@@ -30,4 +35,5 @@ Post.propTypes = {
   contents: PropTypes.string,
   author: PropTypes.string,
   imagepath: PropTypes.string,
+  enddate: PropTypes.instanceOf(Date),
 }

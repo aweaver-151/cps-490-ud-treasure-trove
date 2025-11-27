@@ -39,6 +39,10 @@ export function Auction() {
         <p>
           Owner: <User id={auction.author} />
         </p>
+        <p>
+          End Date: {auction.enddate?.toLocaleDateString() ?? ''} End Time:{' '}
+          {auction.enddate?.toLocaleTimeString() ?? ''}
+        </p>
         <p>Tags: {(auction.tags ?? []).join(', ')}</p>
         <div className='mt-4'>
           <button
