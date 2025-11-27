@@ -2,7 +2,7 @@ import { Post } from '../db/models/post.js'
 import { User } from '../db/models/user.js'
 import { deductTokens } from '../services/users.js'
 
-export async function createPost(userId, { title, contents, tags }, imagepath) {
+export async function createPost(userId, { title, contents, imagepath, tags }) {
   const post = new Post({ title, author: userId, contents, imagepath, tags })
   return await post.save()
 }

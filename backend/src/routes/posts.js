@@ -75,9 +75,7 @@ export function postsRoutes(app) {
 
   app.post('/api/v1/posts', requireAuth, async (req, res) => {
     try {
-      console.log(req.imagepath)
-      console.log(req.body.imagepath)
-      const post = await createPost(req.auth.sub, req.body, req.imagepath)
+      const post = await createPost(req.auth.sub, req.body)
       return res.json(post)
     } catch (err) {
       console.error('error creating post', err)
