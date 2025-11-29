@@ -37,3 +37,16 @@ export const deleteUser = async (id, token) => {
   if (!res.ok) throw new Error('failed to delete user')
   return res.status
 }
+
+export const editUser = async (token, { username, password }) => {
+  const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ username, password }),
+  })
+  if (!res.ok) throw new Error('failed to edit user')
+  return await res.json()
+}

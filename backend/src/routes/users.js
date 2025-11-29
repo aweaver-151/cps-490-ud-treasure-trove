@@ -3,6 +3,7 @@ import {
   loginUser,
   getUserInfoById,
   deleteUser,
+  editUser,
 } from '../services/users.js'
 import { requireAuth } from '../middleware/jwt.js'
 
@@ -41,7 +42,18 @@ export function userRoutes(app) {
       return res.status(204).end()
     } catch (err) {
       console.error('error deleting user', err)
-      return res.status(500).end()
+      return res.status(400).end()
+    }
+  })
+  app.patch('/api/v1/users/me', requireAuth, async (req, res) => {
+    try {
+      const userId = req.auth.sub
+      const { username, password } = req.body
+      const updatedUser = await editUser(userId, { username, password })
+      return res.status(200).json({ username: updatedUser.username })
+    } catch (err) {
+      console.error('error updating user', err)
+      return res.status(400).end()
     }
   })
 }

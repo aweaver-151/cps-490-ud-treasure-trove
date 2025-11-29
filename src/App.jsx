@@ -7,6 +7,7 @@ import { Signup } from './pages/Signup.jsx'
 import { Login } from './pages/Login.jsx'
 import { Shared } from './pages/Shared.jsx'
 import { Auction } from './pages/Auction.jsx'
+import { AcountUpdate } from './pages/acountUpdate.jsx'
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/auction/:id',
         element: <Auction />,
+      },
+      {
+        path: '/account-update',
+        element: <AcountUpdate />,
       },
     ],
   },
