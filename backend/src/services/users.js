@@ -54,3 +54,19 @@ export async function deductTokens(userId, amount) {
 
   return user.tokens
 }
+
+export async function editUser(userId, { username, password }) {
+  const user = await User.findById(userId)
+  if (!user) {
+    throw new Error('User not found')
+  }
+  if (username) {
+    user.username = username
+  }
+  if (password) {
+    const hashedPassword = await bcrypt.hash(password, 10)
+    user.password = hashedPassword
+  }
+  const savedUser = await user.save()
+  return { id: savedUser._id, username: savedUser.username }
+}
