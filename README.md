@@ -1,29 +1,54 @@
 # UD Treasure Trove
+
 Repository for the UD Treasure Trove project for 2025
 
 Group Members: Andrew Weaver, Kye Sprouse, and Michel Kanga
 
 Jira Board For the Project:
-https://cps-490-ud-treasure-trove.atlassian.net/jira/core/projects/TT/board 
+https://cps-490-ud-treasure-trove.atlassian.net/jira/core/projects/TT/board
+
+## Table of Contents
+
+- [Introduction](#introduction)
+  - [Purpose](#purpose)
+  - [Scope](#scope)
+  - [Definitions and Acronyms](#definitions-and-acronyms)
+  - [Resources Used and Citations](#resources-used-and-citations)
+  - [Overview](#overview)
+- [Overall Description](#introduction)
+  - [Product Perspective](#product-perspective)
+  - [Product Functions](#product-functions)
+  - [User Characteristics](#user-characteristics)
+- [Systems Analysis](#systems-analysis)
+  - [Context Level Data Flow Diagram](#context-level-data-flow-diagram)
+  - [Context Level Entity Relationship Diagram](#context-level-entity-relationship-diagram)
+  - [Use Cases](#use-cases)
+- [User Guide](/docs/userguide.md)
+- [Installation Guide](/docs/installguide.md)
 
 ## Introduction
 
 ### Purpose
+
 This project aims to create a system for holding and participating in auctions for items that are put up for auction by users.
 
 ### Scope
+
 This document covers the requirements and use cases for the project, and aims to define our user requirements so that we can implement the system following these requirements.
 
-### Definitions & Acronyms
-* PaaS - Platform as a Service
-* Auctioneer - User who puts an item up for auction
-* Bidder - User who places bids on an item up for auction
+### Definitions and Acronyms
 
-### Resources Used & Citations
+- PaaS - Platform as a Service
+- Auctioneer - User who puts an item up for auction
+- Bidder - User who places bids on an item up for auction
+
+### Resources Used and Citations
+
 https://www.youtube.com/watch?v=yS7B1W2SwaU
 https://flowbite.com/docs/
 
 ### Overview
+
 The [Overall Description](#overall-description) section will provide a more in depth look into the requirements and environment of the document. The [Product Perspective](#product-perspective) subsection covers the environment the system will operate within, as well as hardware and software systems it will interface with. The features provided by the software can be found in the [Product Functions](#product-functions) subsection, and a description of our users can be found in the [User Characteristics](#user-characteristics) subsection. Details about the [Constraints](#constraints) or [Assumptions](#assumptions) can be found in the appropriate subsections of the Overall Descripton section.
 
 The Systems Analysis section contains the Data Flow and Entity relationship diagrams. It also contains the use cases, their descriptions, and all diagrams associated with them.
@@ -31,18 +56,22 @@ The Systems Analysis section contains the Data Flow and Entity relationship diag
 ## Overall Description
 
 ### Product Perspective
+
 This system will use the MERN stack with MongoDB, ExpressJS, React, and NodeJS. The project will use the Heroku PaaS to build and run the web application.
 
 ### Product Functions
+
 The software will provide the following features:
-* Creating and logging into user accounts.
-* Adding auction items with a descrition, title, and ending time for the auction.
-* Browsing through all active auctions.
-* Selecting an auction to view it's decription, title, and a countdown to the auction ending time, and a bid history.
-* Bidding with tokens on each auction.
+
+- Creating and logging into user accounts.
+- Adding auction items with a descrition, title, and ending time for the auction.
+- Browsing through all active auctions.
+- Selecting an auction to view it's decription, title, and a countdown to the auction ending time, and a bid history.
+- Bidding with tokens on each auction.
 
 ### User Characteristics
-The users that will interact with this software will fall into one or both of the categories of auctioneer or bidder, as defined in the [Definitions and Acronyms](#definitions--acronyms) section. 
+
+The users that will interact with this software will fall into one or both of the categories of auctioneer or bidder, as defined in the [Definitions and Acronyms](#definitions--acronyms) section.
 
 ## Systems Analysis
 
@@ -52,10 +81,9 @@ The users that will interact with this software will fall into one or both of th
 
 ### Use Cases
 
-![Alt text](./images/UseCaseDiagram.PNG)
+![Alt text](./docs/images/UseCaseDiagram.PNG)
 
 #### Create User Account
-
 
 #### Description
 
@@ -64,11 +92,11 @@ assigns a new account number, creates a new user record, and a new account recor
 
 #### Communication Diagram
 
-![Alt text](./images/CreateUserAccount-CommunicationDiagram.PNG)
+![Alt text](./docs/images/CreateUserAccount-CommunicationDiagram.PNG)
 
 #### Activity Diagrams
 
-![Alt text](./images/CreateUserAccount-ActivityDiagram.PNG)
+![Alt text](./docs/images/CreateUserAccount-ActivityDiagram.PNG)
 
 #### Login to User Account
 
@@ -78,11 +106,11 @@ User enters username and password, system validates username and password, syste
 
 #### Activity Diagram
 
-![Image Failed To Load](images/LoginActivityDiagram.png "Login Activity Diagram")
+![Image Failed To Load](docs/images/LoginActivityDiagram.png 'Login Activity Diagram')
 
 #### Sequence Diagram
 
-![Image Failed To Load](images/LoginSequenceDiagram.png "Login Sequence Diagram")
+![Image Failed To Load](docs/images/LoginSequenceDiagram.png 'Login Sequence Diagram')
 
 #### Add Auction Item
 
@@ -92,11 +120,11 @@ User selects the add item button, user enters the title, description, and end ti
 
 #### Activity Diagram
 
-![Image Failed To Load](images/AddItemActivityDiagram.png "Add Item Activity Diagram")
+![Image Failed To Load](docs/images/AddItemActivityDiagram.png 'Add Item Activity Diagram')
 
 #### Sequence Diagram
 
-![Image Failed To Load](images/AddItemSequenceDiagram.png "Add Item Sequence Diagram")
+![Image Failed To Load](docs/images/AddItemSequenceDiagram.png 'Add Item Sequence Diagram')
 
 #### Browse Active Auctions
 
@@ -106,12 +134,11 @@ User opens the “Active Auctions” page, and the system retrieves all ongoing 
 
 #### Communication Diagram
 
-![Alt text](./images/AAsequence.png)
+![Alt text](./docs/images/AAsequence.png)
 
 #### Activity Diagram
 
-![Alt text](./images/ActiceAuction.png)
-
+![Alt text](./docs/images/ActiceAuction.png)
 
 #### Select an Auction/View Auction Information
 
@@ -121,11 +148,11 @@ User clicks on an active auction, and the system retrieves the auction details a
 
 #### Communication Diagram
 
-![Alt text](./images/AVSequence.png)
+![Alt text](./docs/images/AVSequence.png)
 
 #### Activity Diagram
 
-![Alt text](./images/AuctionView.png)
+![Alt text](./docs/images/AuctionView.png)
 
 #### Place Bid on Auction
 
@@ -133,10 +160,10 @@ User clicks on an active auction, and the system retrieves the auction details a
 
 User enters a bid, and the system verifies it, updates the auction record, adds the bid to the bid history, and refreshes the real-time display
 
-#### Communication Diagram 
+#### Communication Diagram
 
-![Alt text](./images/BAsequence.png)
+![Alt text](./docs/images/BAsequence.png)
 
 #### Activity Diagram
 
-![Alt text](./images/BidAuction.png)
+![Alt text](./docs/images/BidAuction.png)
