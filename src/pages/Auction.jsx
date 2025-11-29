@@ -28,6 +28,9 @@ export function Auction() {
       console.log('Not enough points to bid!')
     }
   }
+
+  const enddate = new Date(auction.enddate)
+
   return (
     <div className='flex items-center justify-center h-screen'>
       <article className='block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 m-2 min-w-[300px] min-h-[350px]'>
@@ -40,8 +43,8 @@ export function Auction() {
           Owner: <User id={auction.author} />
         </p>
         <p>
-          End Date: {auction.enddate?.toLocaleDateString() ?? ''} End Time:{' '}
-          {auction.enddate?.toLocaleTimeString() ?? ''}
+          End Date: {enddate.toLocaleDateString() ?? ''} End Time:{' '}
+          {enddate.toLocaleTimeString() ?? ''}
         </p>
         <p>Tags: {(auction.tags ?? []).join(', ')}</p>
         <div className='mt-4'>
