@@ -12,6 +12,8 @@ export function PostList({ posts = [] }) {
             title={post.title}
             contents={post.contents}
             author={post.author}
+            imagepath={post.imagepath}
+            enddate={post.enddate}
           />
         </Fragment>
       ))}

@@ -29,13 +29,22 @@ export function Auction() {
     }
   }
 
+  const enddate = new Date(auction.enddate)
+
   return (
     <div className='flex items-center justify-center h-screen'>
-      <div className='block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 m-2 min-w-[300px] min-h-[350px]'>
-        <h1>{auction.title}</h1>
+      <article className='block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 m-2 min-w-[300px] min-h-[350px]'>
+        <img src={import.meta.env.VITE_IMAGE_URL + auction.imagepath} alt='' />
+        <h1 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
+          {auction.title}
+        </h1>
         <p>{auction.contents}</p>
         <p>
           Owner: <User id={auction.author} />
+        </p>
+        <p>
+          End Date: {enddate.toLocaleDateString() ?? ''} End Time:{' '}
+          {enddate.toLocaleTimeString() ?? ''}
         </p>
         <p>Tags: {(auction.tags ?? []).join(', ')}</p>
         <div className='mt-4'>
@@ -46,7 +55,7 @@ export function Auction() {
             Bid
           </button>
         </div>
-      </div>
+      </article>
     </div>
   )
 }

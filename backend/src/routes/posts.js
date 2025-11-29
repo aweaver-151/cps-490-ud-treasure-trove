@@ -8,6 +8,20 @@ import {
   deletePost,
 } from '../services/posts.js'
 import { requireAuth } from '../middleware/jwt.js'
+import { extname, resolve } from 'path'
+import multer from 'multer'
+import { diskStorage } from 'multer'
+
+const storage = diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, resolve('public', 'images'))
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '_' + Date.now() + extname(file.originalname))
+  },
+})
+
+const upload = multer({ storage: storage })
 
 export function postsRoutes(app) {
   app.get('/api/v1/posts', async (req, res) => {
@@ -42,6 +56,22 @@ export function postsRoutes(app) {
       return res.status(500).end()
     }
   })
+
+  app.post(
+    '/api/v1/upload',
+    upload.single('file'),
+    requireAuth,
+    async (req, res) => {
+      try {
+        console.log('File uploaded:', req.file)
+        const file = req.file
+        return res.json(file)
+      } catch (err) {
+        console.error('error uploading image', err)
+        return res.status(500).end()
+      }
+    },
+  )
 
   app.post('/api/v1/posts', requireAuth, async (req, res) => {
     try {

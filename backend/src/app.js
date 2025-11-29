@@ -24,6 +24,8 @@ app.use((req, res, next) => {
 postsRoutes(app)
 userRoutes(app)
 
+app.use(express.static('public'))
+
 app.get('/', (req, res) => {
   res.send('Hello from Express!')
 })
