@@ -106,11 +106,11 @@ User enters username and password, system validates username and password, syste
 
 #### Activity Diagram
 
-![Image Failed To Load](images/LoginActivityDiagram.png 'Login Activity Diagram')
+![Image Failed To Load](docs/images/LoginActivityDiagram.png 'Login Activity Diagram')
 
 #### Sequence Diagram
 
-![Image Failed To Load](images/LoginSequenceDiagram.png 'Login Sequence Diagram')
+![Image Failed To Load](docs/images/LoginSequenceDiagram.png 'Login Sequence Diagram')
 
 #### Add Auction Item
 
@@ -120,11 +120,11 @@ User selects the add item button, user enters the title, description, and end ti
 
 #### Activity Diagram
 
-![Image Failed To Load](images/AddItemActivityDiagram.png 'Add Item Activity Diagram')
+![Image Failed To Load](docs/images/AddItemActivityDiagram.png 'Add Item Activity Diagram')
 
 #### Sequence Diagram
 
-![Image Failed To Load](images/AddItemSequenceDiagram.png 'Add Item Sequence Diagram')
+![Image Failed To Load](docs/images/AddItemSequenceDiagram.png 'Add Item Sequence Diagram')
 
 #### Browse Active Auctions
 
