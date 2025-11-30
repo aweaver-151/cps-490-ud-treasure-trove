@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { usePoints } from '../contexts/PointsContext.jsx'
 import { User } from '../components/User.jsx'
+import { Countdown } from 'react-countdown'
 
 export function Auction() {
   const { id } = useParams()
@@ -46,6 +47,7 @@ export function Auction() {
           End Date: {enddate.toLocaleDateString() ?? ''} End Time:{' '}
           {enddate.toLocaleTimeString() ?? ''}
         </p>
+        <Countdown date={enddate} />
         <p>Tags: {(auction.tags ?? []).join(', ')}</p>
         <div className='mt-4'>
           <button
