@@ -6,8 +6,22 @@ import {
   editUser,
 } from '../services/users.js'
 import { requireAuth } from '../middleware/jwt.js'
+import { User } from '../db/models/user.js'
 
 export function userRoutes(app) {
+  app.get('/api/v1/users/me', requireAuth, async (req, res) => {
+    try {
+      const user = await User.findById(req.auth.sub)
+      if (!user) return res.status(404).json({ error: 'User not found' })
+      return res.status(200).json({
+        id: user._id,
+        username: user.username,
+        points: user.points
+      })
+    } catch (err) {
+      return res.status(400).end()
+    }
+  })
   app.get('/api/v1/users/:id', async (req, res) => {
     const userInfo = await getUserInfoById(req.params.id)
     return res.status(200).send(userInfo)
@@ -16,7 +30,8 @@ export function userRoutes(app) {
   app.post('/api/v1/user/login', async (req, res) => {
     try {
       const token = await loginUser(req.body)
-      return res.status(200).send({ token })
+      const user = await User.findOne({ username: req.body.username })
+      return res.status(200).json({ token, points: user.points })
     } catch (err) {
       return res.status(400).json({
         error: 'login failed, did you enter the correct username/password?',
@@ -27,7 +42,7 @@ export function userRoutes(app) {
   app.post('/api/v1/user/signup', async (req, res) => {
     try {
       const user = await createUser(req.body)
-      return res.status(201).json({ username: user.username })
+      return res.status(201).json({ username: user.username, points: user.points })
     } catch (err) {
       console.error('error adding user:', err)
       return res.status(400).json({
