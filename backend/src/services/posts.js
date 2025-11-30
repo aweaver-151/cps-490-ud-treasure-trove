@@ -22,7 +22,10 @@ async function listPosts(
   query = {},
   { sortBy = 'createdAt', sortOrder = 'descending' } = {},
 ) {
-  return await Post.find(query).sort({ [sortBy]: sortOrder })
+  return await Post.find({
+    ...query,
+    enddate: { $gt: new Date() },
+  }).sort({ [sortBy]: sortOrder })
 }
 
 export async function listAllPosts(options) {
@@ -57,33 +60,33 @@ export async function deletePost(userId, postId) {
 
 export async function bidOnPost(userId, postId, amount) {
   const remainingPoints = await deductPoints(userId, amount)
-  
-  await Post.findByIdAndUpdate(postId, { 
-    highestBid: amount 
+
+  await Post.findByIdAndUpdate(postId, {
+    highestBid: amount,
   })
-  
+
   const bid = new Bid({
     postId,
     userId,
     amount,
-    timestamp: new Date()
+    timestamp: new Date(),
   })
   await bid.save()
-  
+
   return { postId, remainingPoints, highestBid: amount }
 }
 
 export async function getBidHistory(postId) {
   const bids = await Bid.find({ postId })
-    .sort({ timestamp: 1 }) 
+    .sort({ timestamp: 1 })
     .populate('userId', 'username')
-  
-  return bids.map(bid => ({
+
+  return bids.map((bid) => ({
     postId: bid.postId,
     userId: bid.userId._id.toString(),
     username: bid.userId.username,
     amount: bid.amount,
-    timestamp: bid.timestamp
+    timestamp: bid.timestamp,
   }))
 }
 
