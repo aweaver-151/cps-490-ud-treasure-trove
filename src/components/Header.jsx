@@ -13,11 +13,19 @@ export function Header() {
     return (
       <div className='bg-blue-500'>
         <div>
-          Logged in as <User id={sub} /> <span> Points: {loading ? '...' : userPoints ?? 0}</span>
+          Logged in as <User id={sub} />{' '}
+          <span> Points: {loading ? '...' : userPoints ?? 0}</span>
         </div>
         <button
           className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'
+          onClick={() => (window.location.href = '/')}
+        >
+          Home
+        </button>
+        <button
+          className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'
           onClick={() => {
+            window.location.href = '/'
             setToken(null)
             localStorage.removeItem('authToken')
           }}
@@ -30,6 +38,7 @@ export function Header() {
             deleteUser(sub, token)
             setToken(null)
             localStorage.removeItem('authToken')
+            window.location.href = '/'
           }}
         >
           Delete Account
@@ -54,6 +63,12 @@ export function Header() {
 
   return (
     <div className='bg-blue-500'>
+      <button
+        className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'
+        onClick={() => (window.location.href = '/')}
+      >
+        Home
+      </button>
       <button
         className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'
         onClick={() => (window.location.href = '/login')}
