@@ -8,6 +8,7 @@ The Website can be Accessed at [this link](). TODO ADD HEROKU LINK
 - [Logging In](#logging-in)
 - [Deleting Account](#deleting-account)
 - [Logging Out](#logging-out)
+- [Account Update](#account-update)
 - [Creating an Auction](#creating-an-auction)
 - [Accessing an Auction Page](#accessing-an-auction-page)
 
@@ -40,6 +41,14 @@ The Website can be Accessed at [this link](). TODO ADD HEROKU LINK
 
 1. [Log In](#logging-in).
 2. Click the Logout button in the top right of the screen.
+
+## Account Update
+
+![Failed to Find](/docs/images/AccountUpdatePage.png)
+
+1. [Log In](#logging-in).
+2. Click the Account Update button in the top right of the screen.
+3. Enter an updated username and password (these can be the same as your old ones).
 
 ## Creating an Auction
 
