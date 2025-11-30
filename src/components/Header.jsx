@@ -6,14 +6,14 @@ import { usePoints } from '../contexts/PointsContext.jsx'
 
 export function Header() {
   const [token, setToken] = useAuth()
-  const { userPoints } = usePoints()
+  const { userPoints, loading } = usePoints()
 
   if (token) {
     const { sub } = jwtDecode(token)
     return (
       <div className='bg-blue-500'>
         <div>
-          Logged in as <User id={sub} /> <span> Points: {userPoints}</span>
+          Logged in as <User id={sub} /> <span> Points: {loading ? '...' : userPoints ?? 0}</span>
         </div>
         <button
           className='p-2 text-gray-300 hover:text-white hover:bg-blue-800 float-right rounded-lg bg-blue-700 m-1'

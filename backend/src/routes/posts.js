@@ -11,6 +11,9 @@ import { requireAuth } from '../middleware/jwt.js'
 import { extname, resolve } from 'path'
 import multer from 'multer'
 import { diskStorage } from 'multer'
+import { placeBidController } from '../controllers/posts.js'
+import { getBidHistory } from '../services/posts.js'
+import { Bid } from '../db/models/bid.js'
 
 const storage = diskStorage({
   destination: (req, file, cb) => {
@@ -49,8 +52,20 @@ export function postsRoutes(app) {
     const { id } = req.params
     try {
       const post = await getPostById(id)
-      if (post === null) return res.status(404).end()
-      return res.json(post)
+      if (!post) {
+        return res.status(404).json({ error: 'Post not found' })
+      }
+
+      const highest = await Bid.findOne({ postId: id })
+        .sort({ amount: -1 })
+        .lean()
+
+      const highestBid = highest ? highest.amount : 0
+
+      return res.json({
+        ...post.toObject(),
+        highestBid,
+      })
     } catch (err) {
       console.error('error getting post', err)
       return res.status(500).end()
@@ -101,6 +116,17 @@ export function postsRoutes(app) {
     } catch (err) {
       console.error('error deleting post', err)
       return res.status(500).end()
+    }
+  })
+
+    app.post('/api/v1/posts/:postId/bid', requireAuth, placeBidController)
+
+  app.get('/api/v1/posts/:postId/bids', async (req, res) => {
+    try {
+      const bids = await getBidHistory(req.params.postId)
+      return res.json(bids)
+    } catch (err) {
+      return res.status(400).json({ error: err.message })
     }
   })
 }

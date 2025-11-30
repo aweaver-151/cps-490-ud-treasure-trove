@@ -20,7 +20,7 @@ export async function loginUser({ username, password }) {
 
 export async function createUser({ username, password }) {
   const hashedPassword = await bcrypt.hash(password, 10)
-  const user = new User({ username, password: hashedPassword })
+  const user = new User({ username, password: hashedPassword, points: 1000 })
   return await user.save()
 }
 
@@ -39,20 +39,20 @@ export async function deleteUser(userId) {
   return await User.deleteOne({ _id: userId })
 }
 
-export async function deductTokens(userId, amount) {
+export async function deductPoints(userId, amount) {
   const user = await User.findById(userId)
   if (!user) {
     throw new Error('User not found')
   }
 
-  if (user.tokens < amount) {
+  if (user.points < amount) {
     throw new Error('Not enough points')
   }
 
-  user.tokens -= amount
+  user.points -= amount
   await user.save()
 
-  return user.tokens
+  return user.points
 }
 
 export async function editUser(userId, { username, password }) {

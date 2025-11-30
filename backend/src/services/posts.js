@@ -1,6 +1,7 @@
 import { Post } from '../db/models/post.js'
 import { User } from '../db/models/user.js'
-import { deductTokens } from '../services/users.js'
+import { Bid } from '../db/models/bid.js'
+import { deductPoints } from '../services/users.js'
 
 export async function createPost(
   userId,
@@ -55,6 +56,38 @@ export async function deletePost(userId, postId) {
 }
 
 export async function bidOnPost(userId, postId, amount) {
-  const remainingPoints = await deductTokens(userId, amount)
-  return { postId, remainingPoints }
+  const remainingPoints = await deductPoints(userId, amount)
+  
+  await Post.findByIdAndUpdate(postId, { 
+    highestBid: amount 
+  })
+  
+  const bid = new Bid({
+    postId,
+    userId,
+    amount,
+    timestamp: new Date()
+  })
+  await bid.save()
+  
+  return { postId, remainingPoints, highestBid: amount }
+}
+
+export async function getBidHistory(postId) {
+  const bids = await Bid.find({ postId })
+    .sort({ timestamp: 1 }) 
+    .populate('userId', 'username')
+  
+  return bids.map(bid => ({
+    postId: bid.postId,
+    userId: bid.userId._id.toString(),
+    username: bid.userId.username,
+    amount: bid.amount,
+    timestamp: bid.timestamp
+  }))
+}
+
+export async function getHighestBid(postId) {
+  const highest = await Bid.findOne({ postId }).sort({ amount: -1 })
+  return highest ? highest.amount : 0
 }
