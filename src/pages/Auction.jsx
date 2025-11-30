@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { usePoints } from '../contexts/PointsContext.jsx'
 import { User } from '../components/User.jsx'
+import { Countdown } from '../components/Countdown.jsx'
 import { io } from 'socket.io-client'
 
 export function Auction() {
@@ -142,6 +143,7 @@ export function Auction() {
           <br />
           End Time: {enddate.toLocaleTimeString()}
         </p>
+        <Countdown targetDate={enddate} />
 
         <p>Tags: {(auction.tags ?? []).join(', ')}</p>
 
