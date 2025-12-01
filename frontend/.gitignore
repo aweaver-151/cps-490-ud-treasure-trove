@@ -1,5 +1,10 @@
 .env
 
+node_module/
+node_modules/
+.vscode/
+.DS_Store
+
 # Logs
 logs
 *.log
@@ -24,5 +29,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-public/images/*
