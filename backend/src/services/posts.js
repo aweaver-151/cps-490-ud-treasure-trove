@@ -1,7 +1,6 @@
 import { Post } from '../db/models/post.js'
 import { User } from '../db/models/user.js'
 import { Bid } from '../db/models/bid.js'
-import { deductPoints } from '../services/users.js'
 
 export async function createPost(
   userId,
@@ -59,12 +58,6 @@ export async function deletePost(userId, postId) {
 }
 
 export async function bidOnPost(userId, postId, amount) {
-  const remainingPoints = await deductPoints(userId, amount)
-
-  await Post.findByIdAndUpdate(postId, {
-    highestBid: amount,
-  })
-
   const bid = new Bid({
     postId,
     userId,
@@ -73,7 +66,11 @@ export async function bidOnPost(userId, postId, amount) {
   })
   await bid.save()
 
-  return { postId, remainingPoints, highestBid: amount }
+  await Post.findByIdAndUpdate(postId, {
+    highestBid: amount,
+  })
+
+  return { postId, highestBid: amount }
 }
 
 export async function getBidHistory(postId) {
@@ -93,4 +90,28 @@ export async function getBidHistory(postId) {
 export async function getHighestBid(postId) {
   const highest = await Bid.findOne({ postId }).sort({ amount: -1 })
   return highest ? highest.amount : 0
+}
+
+export async function finalizeAuction(postId) {
+  const post = await Post.findById(postId)
+  if (!post) return
+
+  const highest = await Bid.findOne({ postId }).sort({ amount: -1 })
+  if (!highest) return
+
+  const winner = await User.findById(highest.userId)
+  const owner = await User.findById(post.author)
+
+  if (!winner || !owner) return
+
+  if (winner.points >= highest.amount) {
+    winner.points -= highest.amount
+    owner.points += highest.amount
+
+    await winner.save()
+    await owner.save()
+  }
+
+  post.finalized = true
+  await post.save()
 }
