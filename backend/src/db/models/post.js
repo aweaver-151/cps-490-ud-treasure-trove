@@ -7,6 +7,7 @@ const postSchema = new Schema(
     contents: String,
     imagepath: String,
     enddate: { type: Date, required: true },
+    finalized: { type: Boolean, default: false },
     tags: [String],
   },
   { timestamps: true },

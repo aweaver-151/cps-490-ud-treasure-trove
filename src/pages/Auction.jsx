@@ -16,7 +16,7 @@ export function Auction() {
   const [error, setError] = useState('')
   const [bidHistory, setBidHistory] = useState([])
 
-  const { userPoints, setUserPoints } = usePoints()
+  const { userPoints } = usePoints()
 
   useEffect(() => {
     async function load() {
@@ -123,7 +123,6 @@ export function Auction() {
       return
     }
 
-    setUserPoints(data.remainingPoints)
     setHighestBid(amount)
     setMessage('Bid placed successfully!')
     setBidAmount('')
