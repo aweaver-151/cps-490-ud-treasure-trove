@@ -2,8 +2,8 @@ import axios from 'axios'
 
 export const getPosts = async (queryParams) => {
   try {
-    console.log('Backend URL:', import.meta.env.VITE_BACKEND_URL)
-    tempurl = import.meta.env.VITE_BASE_URL + import.meta.env.VITE_BACKEND_URL
+    console.log('Backend URL:', import.meta.env.VITE_BASE_URL + import.meta.env.VITE_BACKEND_URL)
+    const tempurl = import.meta.env.VITE_BASE_URL + import.meta.env.VITE_BACKEND_URL
     const url = new URL('posts', tempurl)
 
     Object.entries(queryParams).forEach(([k, v]) => {
