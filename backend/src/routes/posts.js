@@ -6,14 +6,16 @@ import {
   createPost,
   updatePost,
   deletePost,
+  getHighestBid,
+  getBidHistory,
+  finalizeAuction,
 } from '../services/posts.js'
+
 import { requireAuth } from '../middleware/jwt.js'
 import { extname, resolve } from 'path'
 import multer from 'multer'
 import { diskStorage } from 'multer'
 import { placeBidController } from '../controllers/posts.js'
-import { getBidHistory } from '../services/posts.js'
-import { Bid } from '../db/models/bid.js'
 
 const storage = diskStorage({
   destination: (req, file, cb) => {
@@ -30,11 +32,10 @@ export function postsRoutes(app) {
   app.get('/api/v1/posts', async (req, res) => {
     const { sortBy, sortOrder, author, tag } = req.query
     const options = { sortBy, sortOrder }
+
     try {
       if (author && tag) {
-        return res
-          .status(400)
-          .json({ error: 'query by either author or tag, not both' })
+        return res.status(400).json({ error: 'query by either author or tag, not both' })
       } else if (author) {
         return res.json(await listPostsByAuthor(author, options))
       } else if (tag) {
@@ -50,22 +51,26 @@ export function postsRoutes(app) {
 
   app.get('/api/v1/posts/:id', async (req, res) => {
     const { id } = req.params
+
     try {
-      const post = await getPostById(id)
-      if (!post) {
-        return res.status(404).json({ error: 'Post not found' })
+      let post = await getPostById(id)
+      if (!post) return res.status(404).end()
+
+      const now = new Date()
+
+      if (post.enddate < now && !post.finalized) {
+        await finalizeAuction(post._id)
+        post.finalized = true
+        await post.save()
       }
 
-      const highest = await Bid.findOne({ postId: id })
-        .sort({ amount: -1 })
-        .lean()
-
-      const highestBid = highest ? highest.amount : 0
+      const highestBid = await getHighestBid(id)
 
       return res.json({
         ...post.toObject(),
         highestBid,
       })
+
     } catch (err) {
       console.error('error getting post', err)
       return res.status(500).end()
@@ -78,14 +83,12 @@ export function postsRoutes(app) {
     requireAuth,
     async (req, res) => {
       try {
-        console.log('File uploaded:', req.file)
-        const file = req.file
-        return res.json(file)
+        return res.json(req.file)
       } catch (err) {
         console.error('error uploading image', err)
         return res.status(500).end()
       }
-    },
+    }
   )
 
   app.post('/api/v1/posts', requireAuth, async (req, res) => {
@@ -119,7 +122,7 @@ export function postsRoutes(app) {
     }
   })
 
-    app.post('/api/v1/posts/:postId/bid', requireAuth, placeBidController)
+  app.post('/api/v1/posts/:postId/bid', requireAuth, placeBidController)
 
   app.get('/api/v1/posts/:postId/bids', async (req, res) => {
     try {
